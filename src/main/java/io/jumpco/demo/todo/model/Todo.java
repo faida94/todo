@@ -1,10 +1,6 @@
 package io.jumpco.demo.todo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.StringJoiner;
@@ -15,17 +11,17 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
-    @Column(name = "title_s")
+    @Column(name = "title")
     @Size(min = 3, max = 64)
     private String title;
     @NotNull
     @Size(min = 3, max = 255)
-    @Column(name = "description_s")
+    @Column(name = "description")
     private String description;
-    @Column(name = "completed_f", columnDefinition = "boolean default false")
+    @Column(name = "completed", columnDefinition = "boolean default false")
     @NotNull
     private boolean completed = false;
-    @Column(name = "order_i", columnDefinition = "integer default 0")
+    @Column(name = "order", columnDefinition = "integer default 0")
     @NotNull
     private int order = 0;
 
@@ -97,4 +93,64 @@ public class Todo {
                 .add("order=" + order)
                 .toString();
     }
-}
+
+    public enum TodoType {
+        id("id"),
+        Task("Task"),
+        Bug("Bug"),
+        Features("Features"),
+        Maintenance("Maintenance"),
+        Ready("Ready"),
+        In_Progress("In_Progress"),
+        Done("Done"),
+        Enhancement("Enhancement");
+
+        private TodoType todo_type;
+
+        @Entity
+        public class management{
+            @Id
+            @GeneratedValue
+            private int id;
+            private String Task;
+            private String Bug;
+            private String Features;
+            private String Maintenance;
+            private String Ready;
+            private String In_Progress;
+            private String Done;
+            private String Enhancement;
+
+            @Enumerated(EnumType.STRING)
+            private TodoType todo_type;
+        }
+        public void todo_manage(){
+
+        }
+        
+        private String management;
+
+        TodoType(String management) {
+            this.management = management;
+        }
+
+        public String getManagement() {
+            return management;
+        }
+
+         public TodoType getTodo_type() {
+
+             return todo_type;
+         }
+
+         public void setTodo_type(TodoType todo_type) {
+
+             this.todo_type = todo_type;
+         }
+
+
+
+        }
+    }
+
+

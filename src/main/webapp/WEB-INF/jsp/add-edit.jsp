@@ -12,13 +12,20 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<select id = "Todo">
+    <option value = "Tasks"> Tasks</option>
+    <option value = "Create">Create</option>
+    <option value = "Features">Features </option>
+</select>
+
 <style type="text/css">
 body {
     background-image:url("https://wallpaperaccess.com/full/144511.png");
     background-repeat:no-repeat;
     background-size: cover;
     text-align: center;
-    font-size:100&#37;;
+    font-size:100#37;;
     margin:0;
     padding:0;
 }

@@ -17,10 +17,10 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/nav-bar.jsp"/>
 <jsp:include page="/WEB-INF/jsp/musicplayer.jsp"/>
+<jsp:include page = "/WEB-INF/jsp/kanban.jspa"/>
 <div class="container">
     <div class="row ">
-
-            <h3><center>ToDo List:</center></h3>
+        <h3><center>ToDo List:</center></h3>
 
     </div>
     <table class="table table-striped">

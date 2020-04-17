@@ -13,10 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 
 @Controller
-public class TodoController {
+public class TodoController<Map> {
     private TodoService todoService;
 
     public TodoController(TodoService todoService) {
@@ -29,6 +34,7 @@ public class TodoController {
         result.addObject("mode", "add");
         result.addObject("modeTitle", "Create");
         result.addObject("todo", new Todo());
+        result.addObject("todoType","type");
         return result;
     }
 
@@ -100,4 +106,16 @@ public class TodoController {
         result.addObject("todos", todoService.list(null));
         return result;
     }
-}
+    protected Map referenceData(HttpServletRequest request) {
+        Map referenceData = (Map) new HashMap();
+
+        java.util.Map<String, String> type = new LinkedHashMap<String, String>();
+        type.put("TASK","Task");
+        type.put("BUG","Bug");
+        type.put("FEATURES", "Features");
+        type.put("ENHANCEMENT", "Enhancement");
+        type.put("MAINTENANCE", "Maintenance");
+        //referenceData.getClass("TodoType", type);
+        return (Map) type;
+    }
+    }
